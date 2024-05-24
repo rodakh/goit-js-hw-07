@@ -25,11 +25,19 @@ const images = [
   },
 ]
 
-const gallery = document.querySelector('.gallery')
+const gallery = document.querySelector('.gallery');
 
-images.forEach(image => {
-  gallery.insertAdjacentHTML(
-    'beforeend',
-    `<li><img src="${image.url}" alt="${image.alt}"></li>`,
-  )
-})
+const createGalleryMarkup = (images) => {
+  return images
+      .map(
+          (image) => `
+        <li>
+          <img src="${image.url}" alt="${image.alt}">
+        </li>
+      `
+      )
+      .join("");
+};
+
+const imagesMarkup = createGalleryMarkup(images);
+gallery.insertAdjacentHTML('beforeend', imagesMarkup);
